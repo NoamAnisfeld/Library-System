@@ -8,7 +8,7 @@ conn = connection.cursor()
 # connection.commit()
 
 # To add a row to the database.
-def add_db(name_book, name_auther, genre, language, sum_books, location_book):
+def add_book(name_book, name_auther, genre, language, sum_books, location_book):
     # the command to add.
     conn.execute(f"INSERT INTO books (name_book, name_auther, genre, language, sum_books, location_book)"
                  f"VALUES (?,?,?,?,?,?)", (name_book, name_auther, genre, language, sum_books, location_book))
@@ -16,21 +16,21 @@ def add_db(name_book, name_auther, genre, language, sum_books, location_book):
     connection.commit()
 
 # to show the all database.
-def show_all_db(tabel):
+def show_entire_table(table_name):
     # the command to select all
     conn.execute(f"SELECT * "
-                 f"FROM {tabel}")
+                 f"FROM {table_name}")
     # the result.
     rows = conn.fetchall()
     for row in rows:
         print(row)
 
-def show_row_db(tabel,by,typ):
+def show_single_row(table_name, filter_by, filter_value):
     try:
         # try to pynd the book
         conn.execute(f"SELECT * "
-                     f"FROM {tabel} "
-                     f"WHERE {by} = ?;", (typ,))
+                     f"FROM {table_name} "
+                     f"WHERE {filter_by} = ?;", (filter_value,))
         # the result.
         rows = conn.fetchall()
         for book in rows:
@@ -38,32 +38,32 @@ def show_row_db(tabel,by,typ):
     except:
         print("name error")
 
-# check if is a number
-def check_num_book(num):
+# check if it's a number
+def is_number(num):
     return num.isdigit()
 
-def delete(table,by, num_book):
+def delete_book(table_name, filter_by, filter_value):
 
-    conn.execute(f"DELETE FROM {table}"
-                 f"WHERE {by} = ?;", (num_book,))
+    conn.execute(f"DELETE FROM {table_name}"
+                 f"WHERE {filter_by} = ?;", (filter_value,))
     # save the changes.
     connection.commit()
-def show_column():
+def show_columns_data():
     # to show the column.
-    column = conn.execute("PRAGMA table_info(Books)")
-    for col in column:
+    columns = conn.execute("PRAGMA table_info(Books)")
+    for col in columns:
         print(col)
 
 
-def delete_all(table):
+def delete_all_books(table_name):
     # to delete all.
-    conn.execute(f"DELETE FROM {table}")
+    conn.execute(f"DELETE FROM {table_name}")
     # save the changes.
     connection.commit()
 
-def one_of_the_column(name_column):
-    list_name_columns = ["num_book", "name_book", "name_auther", "genre", "language", "sum_books", "location_book"]
-    return name_column in list_name_columns
+def is_valid_column(column_name):
+    column_names = ["num_book", "name_book", "name_auther", "genre", "language", "sum_books", "location_book"]
+    return column_name in column_names
 
 to_do = ""
 while to_do != "exit":
@@ -79,26 +79,26 @@ while to_do != "exit":
                 flag = False
             except:
                 print("put in the coract book by the column")
-        while not check_num_book(sum_books):
+        while not is_number(sum_books):
             sum_books = input("put in the sum :\n")
 
         sum_books = int(sum_books)
-        add_db(name_book, name_auther, genre, language, sum_books, location_book)
+        add_book(name_book, name_auther, genre, language, sum_books, location_book)
         print("the book is added")
     elif to_do == "del":
-        show_column()
+        show_columns_data()
         by = "num_book"
         book = input("chose the num of the book\n")
 
     elif to_do == "show":
-        show_all_db("Books")
+        show_entire_table("Books")
     elif to_do == "search":
         by = (input("search by 1 of the option (num_book, name_book, name_auther, genre, language, sum_books, location_book)\n"))
-        while not one_of_the_column(by):
+        while not is_valid_column(by):
             by = (input(
                 "search by 1 of the option (num_book, name_book, name_auther, genre, language, sum_books, location_book)\n"))
         book = input("the mark of the book\n")
-        show_row_db("Books",by,book)
+        show_single_row("Books", by, book)
     elif to_do != "exit":
         print("chose one of de option")
 conn.close()
