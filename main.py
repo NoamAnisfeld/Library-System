@@ -103,3 +103,5 @@ while to_do != "exit":
         print("chose one of de option")
 conn.close()
 connection.close()
+
+# Test comment
