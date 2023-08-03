@@ -8,13 +8,23 @@ conn = connection.cursor()
 # connection.commit()
 
 # To add a row to the database.
-def add_book(name_book, name_auther, genre, language, sum_books, location_book):
+# def add_book(name_book, name_auther, genre, language, sum_books, location_book):
+#     # the command to add.
+#     conn.execute(f"INSERT INTO books (name_book, name_auther, genre, language, sum_books, location_book)"
+#                  f"VALUES (?,?,?,?,?,?)", (name_book, name_auther, genre, language, sum_books, location_book))
+#     # save the changes
+#     connection.commit()
+def add_book(tuple_arg):
+    connection = sqlite3.connect("library_mego.db")
+    conn = connection.cursor()
     # the command to add.
     conn.execute(f"INSERT INTO books (name_book, name_auther, genre, language, sum_books, location_book)"
-                 f"VALUES (?,?,?,?,?,?)", (name_book, name_auther, genre, language, sum_books, location_book))
+                 f"VALUES (?,?,?,?,?,?)", tuple_arg)
     # save the changes
     connection.commit()
-
+    conn.close()
+    connection.close()
+    return True
 # to show the all database.
 def show_entire_table(table_name):
     # the command to select all
@@ -64,7 +74,7 @@ def delete_all_books(table_name):
 def is_valid_column(column_name):
     column_names = ["num_book", "name_book", "name_auther", "genre", "language", "sum_books", "location_book"]
     return column_name in column_names
-
+'''
 to_do = ""
 while to_do != "exit":
     to_do = input("input what you want to do \nto add a book (add)\nto delete a book (del)\nto show all row (show)\n"
@@ -104,4 +114,4 @@ while to_do != "exit":
 conn.close()
 connection.close()
 
-# Test comment
+'''
