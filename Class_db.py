@@ -60,7 +60,7 @@ class Class_db:
         column_names = ["num_book", "name_book", "name_auther", "genre", "language", "sum_books", "location_book"]
         return column_name in column_names
 
-    # to closs the database
-    def clos_the_db(self):
+    # to close the database
+    def close_the_db(self):
         self.conn.close()
         self.connection.close()
