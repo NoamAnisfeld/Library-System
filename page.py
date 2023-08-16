@@ -15,7 +15,7 @@ def index():
     rows = conn.fetchall()
     result = ''
     for row in rows:
-        result = result + row
+        result = result + str(row)
 
     conn.close()
     connection.close()
