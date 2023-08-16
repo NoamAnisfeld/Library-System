@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     # return the html page.
-    return render_template('library.html')
+    return "Hello World"
 #  turn on the website.
 if __name__ == '__main__':
     app.run(debug=True)
