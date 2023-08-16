@@ -9,11 +9,19 @@ def index():
     connection = sqlite3.connect("library_mego.db")
     conn = connection.cursor()
 
+    conn.execute(f"SELECT * "
+                 f"FROM {table_name}")
+    # the result.
+    rows = conn.fetchall()
+    result = ''
+    for row in rows:
+        result = result + row
+
     conn.close()
     connection.close()
 
     # return the html page.
-    return "Opened and closed the DB successfully"
+    return result
 #  turn on the website.
 if __name__ == '__main__':
     app.run(debug=True)
