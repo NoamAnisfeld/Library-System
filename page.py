@@ -10,7 +10,7 @@ def index():
     conn = connection.cursor()
 
     conn.execute(f"SELECT * "
-                 f"FROM {table_name}")
+                 f"FROM books")
     # the result.
     rows = conn.fetchall()
     result = ''
