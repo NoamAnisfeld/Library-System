@@ -8,6 +8,17 @@ def index():
 
     connection = sqlite3.connect("library_mego.db")
     conn = connection.cursor()
+    # the command to add.
+    conn.execute(f"INSERT INTO books (name_book, name_auther, genre, language, sum_books, location_book)"
+                 f"VALUES (?,?,?,?,?,?)", ('Harry Potter', 'J.K. Rowling', 'Fantasy', 'English', 2, 'somewhere'))
+    # save the changes
+    connection.commit()
+    # close the conaction.
+    conn.close()
+    connection.close()
+
+    connection = sqlite3.connect("library_mego.db")
+    conn = connection.cursor()
 
     conn.execute(f"SELECT * "
                  f"FROM books")
