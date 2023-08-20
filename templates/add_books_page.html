@@ -1,25 +1,27 @@
-{% extends "up.html" %}
-{% block title %} home page {% endblock %}
-{% block content %}
-<form action="#" method="post">
-    <p>name of the book</p>
-    <p><input type="text" name="name_book"/></p><br>
-    <p>name_auther</p>
-    <p><input type="text" name="name_auther"/></p><br>
-    <p>genre</p>
-    <p><input type="text" name="genre"/></p><br>
-    <p>language</p>
-    <p><input type="text" name="language"/></p><br>
-    {% for i in range(10) %}
-        <p>{{i}}</p>
-    {%endfor%}
-    <p>sum_books</p>
-    <p><input type="text" name="sum_books"/></p><br>
-    <p>location_book</p>
-    <p><input type="text" name="location_book"/></p><br>
+<html>
+	<head>
+		<title>MEGO Library-system</title>
 
-    <p><input type="submit" value="submit"/></p>
+	</head>
+	<body>
+        <form action="#" method="post">
+            <p>name of the book
+                <input type="text" name="name_book"/></p>
+            <p>name_auther
+                <input type="text" name="name_auther"/></p>
+            <p>genre
+                <input type="text" name="genre"/></p>
+            <p>language
+                <input type="text" name="language"/></p>
+            <p>sum_books
+                <input type="text" name="sum_books"/></p>
+            <p>location_book
+                <input type="text" name="location_book"/></p>
 
-</form>
+            <p><input type="submit" value="submit"/></p>
 
-{% endblock %}
+        </form>
+
+</body>
+</html>
+
