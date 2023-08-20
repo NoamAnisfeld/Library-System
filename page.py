@@ -7,23 +7,28 @@ db = Class_db.Class_db()
 # the first page.
 @app.route("/", methods=["POST","GET"])
 def index():
-    # return the html page.
+    # check if the html send the information or not.
     if request.method == "POST":
+        # return the function add_book.
         return redirect(url_for("add_book"))
     else:
         return render_template('library.html')
 @app.route("/add_book", methods=["POST","GET"])
 def add_book():
+    # check if the html send the information or not.
     if request.method == "POST":
+        # pot a dictionary in user.
         user = request.form
+        # check if it's a number.
         if not user["sum_books"].isdigit():
-            # flash("it need to be a number")
             return render_template("add_books_page.html")
         for i in user:
             print(user[i])
         user = tuple(user.values())
+        # add the book to the database
         db.add_book(user)
         print(user)
+        # return the function book_adds that show the book.
         return redirect(url_for("book_adds", book=user))
     else:
         return render_template("add_books_page.html")
