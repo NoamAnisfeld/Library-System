@@ -26,11 +26,10 @@ class Class_db:
                      f"FROM {table_name}")
         # the result.
         rows = conn.fetchall()
-        for row in rows:
-            print(row)
         # close the conaction.
         conn.close()
         connection.close()
+        return rows
 
     def show_single_row(self, table_name, filter_by, filter_value):
         # open the conaction.
