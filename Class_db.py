@@ -26,11 +26,10 @@ class Class_db:
                      f"FROM {table_name}")
         # the result.
         rows = conn.fetchall()
-        for row in rows:
-            print(row)
         # close the conaction.
         conn.close()
         connection.close()
+        return rows
 
     def show_single_row(self, table_name, filter_by, filter_value):
         # open the conaction.
@@ -44,13 +43,13 @@ class Class_db:
                          f"WHERE {filter_by} = ?;", (filter_value,))
             # the result.
             rows = conn.fetchall()
-            for book in rows:
-                print(book)
         except:
             print("name error")
         # close the conaction.
         conn.close()
         connection.close()
+        return rows
+
 
 
     # to delete a book.
@@ -72,11 +71,11 @@ class Class_db:
         conn = connection.cursor()
         # to show the column.
         columns = conn.execute("PRAGMA table_info(Books)")
-        for col in columns:
-            print(col)
+        
         # close the conaction.
         conn.close()
         connection.close()
+        return columns
 
     def delete_all_books(self, table_name):
         # open the conaction.
