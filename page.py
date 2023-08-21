@@ -19,13 +19,14 @@ def add_book():
         # add the book to the database
         db.add_book(user)
         # return the function book_adds that show the book.
-        return redirect(url_for("book_adds", book=user))
+        return redirect(url_for("show_books"))
     else:
         return render_template("add_books_page.html")
 
-@app.route("/<book>")
-def book_adds(book):
-    return f"<h1>{book}</h1>"
+@app.route("/show_books")
+def show_books():
+    information = db.show_entire_table("books")
+    return render_template("show db.html",information=information)
 #  turn on the website.
 if __name__ == '__main__':
     app.run()
