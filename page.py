@@ -29,5 +29,5 @@ def show_books():
     return render_template("show db.html",information=information)
 #  turn on the website.
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 

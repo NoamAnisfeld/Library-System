@@ -3,7 +3,7 @@
   <head>
     <title>MEGO Library-system</title>
 
-    <link rel="stylesheet" href="./library-style.css" />
+    <link rel="stylesheet" href="{{url_for('static',filename='css/library_style.css')}}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -29,9 +29,14 @@
       <div class="box-button">
         <button class="blue-button">הכנס/הרשם</button>
         <button class="blue-button">רשימת סניפים</button>
-        <button class="blue-button">רשימת ספרים</button>
+        <a href="/show_books">
+          <button class="blue-button">רשימת ספרים</button>
+        </a>
+        <a href="/add_book">
+          <button class="blue-button">הוספת ספר</button>
+        </a>
       </div>
     </div>
-	<script src="./libary.js"></script>
+      <script src="{{url_for('static', filename='javascript/libary.js')}}"></script>
   </body>
 </html>
