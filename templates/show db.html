@@ -1,15 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MEGO Library-system</title>
-</head>
-<body>
-
+    <style>
+      body {
+        background-color: lightblue;
+      }
+      .blue-button {
+        background-color: blue;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
     {% for i in information %}
-    <p>{{i}}</p>
+        <p>{{i}}</p>
     {% endfor %}
-    
-</body>
+  </body>
 </html>

@@ -38,5 +38,4 @@ while to_do != "exit":
         db.show_single_row("Books", by, book)
     elif to_do != "exit":
         print("chose one of de option")
-db.close_the_db()
 
