@@ -92,3 +92,5 @@ class Class_db:
     def is_valid_column(self, column_name):
         column_names = ["num_book", "name_book", "name_auther", "genre", "language", "sum_books", "location_book"]
         return column_name in column_names
+
+    # my comment
