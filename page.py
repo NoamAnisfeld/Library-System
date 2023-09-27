@@ -35,20 +35,18 @@ def show_books():
     return render_template("show db.html", information=information)
 
 
-@app.route("/search_book", methods=['POST','GET'])
+@app.route("/search_book", methods=['POST', 'GET'])
+# route search button and search field
 def search_book():
+    # route search field
     if request.method == 'POST':
-        information = db.show_single_row('books','name_book',request.form['search-field'])
+        #  get the row of the relevant book from DB
+        information = db.show_single_row('books', 'name_book', request.form['search-field'])
         return render_template("show db.html", information=information)
 
     else:
+        # route the search button
         return render_template('search_book.html')
-
-
-# @app.route('/search_result')
-# def search_result():
-#     print(request.form)
-#     return render_template('')
 
 
 #  turn on the website.
