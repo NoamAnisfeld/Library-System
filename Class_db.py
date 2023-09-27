@@ -1,4 +1,31 @@
 import sqlite3
+
+
+# to create and delete the database to use only one's
+####################################################################################
+def create_tabel():
+    connection = sqlite3.connect("library_mego.db")
+    conn = connection.cursor()
+    conn.execute(f"CREATE TABLE books (id INTEGER PRIMARY KEY AUTOINCREMENT, name_book TEXT, name_auther TEXT, genre TEXT, language TEXT, location_book TEXT,accompanied text);")
+    # save the changes
+    connection.commit()
+    # close the conaction.
+    conn.close()
+    connection.close()
+
+def delete_dable(table):
+
+    connection = sqlite3.connect("library_mego.db")
+    conn = connection.cursor()
+    conn.execute(f"DROP TABLE {table};")
+    # save the changes
+    connection.commit()
+    # close the conaction.
+    conn.close()
+    connection.close()
+
+####################################################################
+
 class Class_db:
 
     # To add a row to the database.
@@ -7,7 +34,7 @@ class Class_db:
         connection = sqlite3.connect("library_mego.db")
         conn = connection.cursor()
         # the command to add.
-        conn.execute(f"INSERT INTO books (name_book, name_auther, genre, language, sum_books, location_book)"
+        conn.execute(f"INSERT INTO books (name_book, name_auther, genre, language, location_book,accompanied)"
                           f"VALUES (?,?,?,?,?,?)", tuple_arg)
         # save the changes
         connection.commit()
@@ -35,6 +62,7 @@ class Class_db:
         # open the conaction.
         connection = sqlite3.connect("library_mego.db")
         conn = connection.cursor()
+        rows = []
         try:
 
             # try to pynd the book
@@ -90,7 +118,18 @@ class Class_db:
         connection.close()
 
     def is_valid_column(self, column_name):
-        column_names = ["num_book", "name_book", "name_auther", "genre", "language", "sum_books", "location_book"]
+        column_names = ["num_book", "name_book", "name_auther", "genre", "language","accompanied" , "location_book"]
         return column_name in column_names
 
-    # my comment
+
+
+#  plaay only whan the page is running.
+if __name__ == "__main__":
+    # to delete the table
+    # delete_dable("books)
+    # to create the table
+    # create_tabel()
+    db = Class_db()
+    db.add_book((("name_book", "name_auther"," genre","language", "location_book","True")))
+    for item in db.show_entire_table("books"):
+        print(item)
