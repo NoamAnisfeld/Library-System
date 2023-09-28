@@ -42,6 +42,25 @@ class Class_db:
         conn.close()
         connection.close()
 
+    def change_a_column_in_a_row(self, table_name, column_name, new_value, id):
+        # open the conaction.
+        connection = sqlite3.connect("library_mego.db")
+        conn = connection.cursor()
+        # the command to change.
+        conn.execute(f"UPDATE {table_name} SET {column_name} = ? WHERE id = ?",(new_value, id) )
+        # get bake if is seccs.
+        if conn.rowcount > 0:
+            # save the changes
+            connection.commit()
+            # close the conaction.
+            conn.close()
+            connection.close()
+            return True
+        # close the conaction.
+        conn.close()
+        connection.close()
+        return False
+
 
     # to show the all database.
     def show_entire_table(self, table_name):
@@ -130,6 +149,6 @@ if __name__ == "__main__":
     # to create the table
     # create_tabel()
     db = Class_db()
-    db.add_book((("name_book", "name_auther"," genre","language", "location_book","True")))
+    db.add_book((("namevecrvfcw", "name_autvdvfvfdher"," genrvrefwcere","languecdcdsage", "location_book","True")))
     for item in db.show_entire_table("books"):
         print(item)
