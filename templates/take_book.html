@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/take_book.css')}}"
+    />
+  </head>
+  <body>
+    <label for="book_take"></label>
+    <input
+      id="input_book"
+      type="text"
+      placeholder="Name book..."
+      name="book_take"
+    />
+
+    <ul>
+      {% for i in range(books|length) %}
+      <li numberBook="{{i}}" data-borrowed="{{books[i][-1]}}" class="book">
+        {{ books[i] }}<button numberBook="{{i}}">לשאל את הספר</button>
+      </li>
+      {% endfor %}
+    </ul>
+    <script src="{{url_for('static', filename='javascript/take_book.js')}}"></script>
+  </body>
+</html>
