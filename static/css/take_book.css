@@ -1,0 +1,3 @@
+.book:not([data-borrowed=False]) {
+  display: none;
+}

@@ -42,13 +42,13 @@ def take_book():
     if request.method == 'POST':
         index_book_take = int(request.form['data'])
         id_of_the_book = information[index_book_take][0]
-        change_the_db = db.change_a_column_in_a_row("books","accompanied","False",id_of_the_book)
+        change_the_db = db.change_a_column_in_a_row("books","accompanied","True",id_of_the_book)
         print(change_the_db)
         # return the function book_adds that show the book.
         if change_the_db:
-            return jsonify({"data": "true","id":id_of_the_book,"index":information[index_book_take]})
+            return jsonify({"data": True ,"id":id_of_the_book,"index":information[index_book_take]})
         else:
-            return jsonify({"data": "false"})
+            return jsonify({"data": False})
 
     else:
         return render_template("take_book.html", books=information)
